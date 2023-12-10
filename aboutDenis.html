@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="aboutDenisStyle.css">
+	<title>HitbeatGuitarDenis</title>
+	<link rel="apple-touch-icon" href="image/gut.png">
+	<link rel="shortcut icon" href="image/gut.png" type="image/x-icon">
+</head>
+
+<body>
+	<header>
+
+		<nav class="site-nav js-site-nav" role="navigation" aria-label="navigation">
+			<div class="site-nav__curtain js-nav-curtain"></div>
+
+			<div class="wrapper wrapper--nav-area">
+
+				<button class="menu-button js-menu-button" aria-expanded="false" aria-controls="menu" aria-label="Menu button">
+					<span class="menu-button__lines">
+						<span class="menu-button__line"></span>
+						<span class="menu-button__line"></span>
+						<span class="menu-button__line"></span>
+					</span>
+
+				</button>
+
+
+				<ul class="site-nav__menu u-list-reset js-menu" id="menu">
+					<li><a class="site-nav__link" href="aboutDenis.html">О ДЕНИСЕ</a></li>
+					<li><a class="site-nav__link" href="concerts.html">КОНЦЕРТЫ </a></li>
+					<li><a class="site-nav__link" href="price.html">ЦЕНЫ</a></li>
+					<li><a class="site-nav__link" href="contact.html">КОНТАКТЫ</a></li>
+				</ul>
+				<div class="centerlogo">
+					<a href="home.html">
+						<img src="image/LogoaLL.png" alt="hitbeat"></a>
+				</div>
+			</div>
+		</nav>
+		<script>
+			const siteNav = document.querySelector('.js-site-nav')
+			const menu = document.querySelector('.js-menu')
+			const menuButton = document.querySelector('.js-menu-button')
+			const navCurtain = document.querySelector('.js-nav-curtain')
+
+			function mobileNavToggler() {
+				const state = {
+					isOpen: false,
+				}
+
+				function showMenu() {
+					siteNav.classList.add('site-nav--is-open')
+					menu.classList.remove('fade-out')
+					menu.classList.add('fade-in')
+				}
+
+				function hideMenu() {
+					siteNav.classList.remove('site-nav--is-open')
+					menu.classList.remove('fade-in')
+					menu.classList.add('fade-out')
+				}
+
+				function curtainUp() {
+					navCurtain.classList.remove('curtain-down')
+					navCurtain.classList.add('curtain-up')
+				}
+
+				function curtainDown() {
+					navCurtain.classList.remove('curtain-up')
+					navCurtain.classList.add('curtain-down')
+				}
+
+				function unfocusButton(event) {
+					menuButton.classList.remove('menu-button__lines--open')
+					menuButton.setAttribute('aria-expanded', 'false')
+				}
+
+				function focusButton(event) {
+					menuButton.classList.add('menu-button__lines--open')
+					menuButton.setAttribute('aria-expanded', 'true')
+				}
+
+				function handleMenuButtonClick() {
+					if (state.isOpen) {
+						hideMenu()
+						unfocusButton()
+						curtainDown()
+						state.isOpen = false
+						return
+					}
+
+					focusButton()
+					curtainUp()
+					state.isOpen = true
+				}
+
+				function handleCurtainAnimationEnd() {
+					if (state.isOpen) {
+						showMenu()
+					}
+				}
+
+				return {
+					handleEvent(event) {
+						if (event.type === 'click') {
+							handleMenuButtonClick()
+							return
+						}
+
+						if (event.type === 'animationend') {
+							handleCurtainAnimationEnd()
+						}
+					},
+
+					init() {
+						menuButton.addEventListener('click', this)
+						navCurtain.addEventListener('animationend', this)
+					},
+				}
+			}
+
+			mobileNavToggler().init()
+
+		</script>
+	</header>
+	<main id="mainmain">
+
+		<h2>ДЕНИС МАКЕЕВ</h2>
+		<div class="prepod">
+			<div class="imageDen">
+				<img src="image/3qIsKmZcq2c.jpg" alt="Denis">
+			</div>
+			<div class="textDen">
+				<div class="textDenBold">Встречайте нашего талантливого преподавателя по гитаре!</div>
+				<div> С опытом более пяти лет в обучении, Денис Макеев прививает страсть к музыке и индивидуальный подход в каждое занятие. С его профессиональными навыками и вдохновляющей методикой вы быстро освоите искусство игры на гитаре, создавая мелодии, которые будут вдохновлять вас и ваших слушателей!</div>
+			</div>
+		</div>
+		<h2>ВЫСТУПЛЕНИЕ ДЕНИСА МАКЕЕВА</h2>
+		<div class="video-container">
+			<iframe src="https://www.youtube.com/embed/ZcHXkvs6b2c?si=RS7wF5DV4FOrgI8h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+		</div>
+	</main>
+	<footer>
+
+	</footer>
+</body>
+
+</html>

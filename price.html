@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="priceStyle.css">
+	<title>HitbeatGuitarPrice</title>
+	<link rel="apple-touch-icon" href="image/gut.png">
+	<link rel="shortcut icon" href="image/gut.png" type="image/x-icon">
+</head>
+
+<body>
+	<header>
+
+		<nav class="site-nav js-site-nav" role="navigation" aria-label="navigation">
+			<div class="site-nav__curtain js-nav-curtain"></div>
+
+			<div class="wrapper wrapper--nav-area">
+
+				<button class="menu-button js-menu-button" aria-expanded="false" aria-controls="menu" aria-label="Menu button">
+					<span class="menu-button__lines">
+						<span class="menu-button__line"></span>
+						<span class="menu-button__line"></span>
+						<span class="menu-button__line"></span>
+					</span>
+
+				</button>
+
+
+				<ul class="site-nav__menu u-list-reset js-menu" id="menu">
+					<li><a class="site-nav__link" href="aboutDenis.html">О ДЕНИСЕ</a></li>
+					<li><a class="site-nav__link" href="concerts.html">КОНЦЕРТЫ </a></li>
+					<li><a class="site-nav__link" href="price.html">ЦЕНЫ</a></li>
+					<li><a class="site-nav__link" href="contact.html">КОНТАКТЫ</a></li>
+				</ul>
+				<div class="centerlogo">
+					<a href="home.html">
+						<img src="image/LogoaLL.png" alt="hitbeat"></a>
+				</div>
+			</div>
+		</nav>
+		<script>
+			const siteNav = document.querySelector('.js-site-nav')
+			const menu = document.querySelector('.js-menu')
+			const menuButton = document.querySelector('.js-menu-button')
+			const navCurtain = document.querySelector('.js-nav-curtain')
+
+			function mobileNavToggler() {
+				const state = {
+					isOpen: false,
+				}
+
+				function showMenu() {
+					siteNav.classList.add('site-nav--is-open')
+					menu.classList.remove('fade-out')
+					menu.classList.add('fade-in')
+				}
+
+				function hideMenu() {
+					siteNav.classList.remove('site-nav--is-open')
+					menu.classList.remove('fade-in')
+					menu.classList.add('fade-out')
+				}
+
+				function curtainUp() {
+					navCurtain.classList.remove('curtain-down')
+					navCurtain.classList.add('curtain-up')
+				}
+
+				function curtainDown() {
+					navCurtain.classList.remove('curtain-up')
+					navCurtain.classList.add('curtain-down')
+				}
+
+				function unfocusButton(event) {
+					menuButton.classList.remove('menu-button__lines--open')
+					menuButton.setAttribute('aria-expanded', 'false')
+				}
+
+				function focusButton(event) {
+					menuButton.classList.add('menu-button__lines--open')
+					menuButton.setAttribute('aria-expanded', 'true')
+				}
+
+				function handleMenuButtonClick() {
+					if (state.isOpen) {
+						hideMenu()
+						unfocusButton()
+						curtainDown()
+						state.isOpen = false
+						return
+					}
+
+					focusButton()
+					curtainUp()
+					state.isOpen = true
+				}
+
+				function handleCurtainAnimationEnd() {
+					if (state.isOpen) {
+						showMenu()
+					}
+				}
+
+				return {
+					handleEvent(event) {
+						if (event.type === 'click') {
+							handleMenuButtonClick()
+							return
+						}
+
+						if (event.type === 'animationend') {
+							handleCurtainAnimationEnd()
+						}
+					},
+
+					init() {
+						menuButton.addEventListener('click', this)
+						navCurtain.addEventListener('animationend', this)
+					},
+				}
+			}
+
+			mobileNavToggler().init()
+
+		</script>
+	</header>
+	<main>
+		<div class="indizan">
+			<div class="inz">
+				<h2>ПРОБНОЕ ЗАНЯТИЕ</h2>
+			</div>
+			<div class="probn">
+				<div class="photo">
+					<img src="image/imageNst.jpg" alt="Фото">
+				</div>
+				<div class="caption">
+					<div class="time-probn">Длительность занятия - 1 час</div>
+					<div class="opis-probn">На этом занятие Вы познакомитесь с основами инструмента и окунетесь в увлекательный мир музыки, начиная с простых аккордов и мелодий. </div>
+					<a href="login.html" class="zapis-probn">Записаться на первое пробное занятие</a>
+				</div>
+
+			</div>
+		</div>
+		<div class="indizan">
+			<div class="inz">
+				<h2>ИНДИВИДУАЛЬНЫЕ ЗАНЯТИЯ</h2>
+			</div>
+			<div class="cardindivid">
+				<div class="card-container individ">
+					<div class="card" id="card">
+						<div id="abon">Без абонимента</div>
+						<div id="title">1 ЗАНЯТИЕ</div>
+						<div id="time">Длительность - 1 час</div>
+						<div id="price">1700р</div>
+						<div id="zap"><a href="login.html">Записаться</a></div>
+					</div>
+
+					<div class="card">
+
+						<div id="abon">Абонимаент на</div>
+						<div id="title">4 ЗАНЯТИЯ</div>
+						<div id="time">Одно занятие - 1200р</div>
+						<div id="price">4800р</div>
+						<div id="zap"><a href="login.html">Записаться</a></div>
+
+					</div>
+					<div class="card">
+						<div id="abon">Абонимаент на</div>
+						<div id="title">8 ЗАНЯТИЙ</div>
+						<div id="time">Одно занятие - 1300р</div>
+						<div id="price">10400р</div>
+						<div id="zap"><a href="login.html">Записаться</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="indizan">
+			<div class="inz">
+				<h2>ГРУППОВЫЕ ЗАНЯТИЯ</h2>
+			</div>
+			<div class="cardindivid">
+				<div class="card-container individ">
+					<div class="card" id="card">
+						<div id="abon">Без абонимента</div>
+						<div id="title">1 ЗАНЯТИЕ</div>
+						<div id="time">Длительность - 1 час</div>
+						<div id="price">1000р</div>
+						<div id="zap"><a href="login.html">Записаться</a></div>
+					</div>
+
+					<div class="card">
+
+						<div id="abon">Абонимаент на</div>
+						<div id="title">4 ЗАНЯТИЯ</div>
+						<div id="time">Одно занятие - 950р</div>
+						<div id="price">3800р</div>
+						<div id="zap"><a href="login.html">Записаться</a></div>
+
+					</div>
+					<div class="card">
+						<div id="abon">Абонимаент на</div>
+						<div id="title">8 ЗАНЯТИЙ</div>
+						<div id="time">Одно занятие - 900р</div>
+						<div id="price">7200р</div>
+						<div id="zap"><a href="login.html">Записаться</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="indizan">
+			<div class="inz">
+				<h2>НАСТРОЙКА ГИТАРЫ</h2>
+			</div>
+			<div class="cardindivid">
+				<div class="card-container individ">
+					<div class="card" id="card">
+						<div id="abon">Гитара/бас</div>
+						<div id="title">СМЕНА СТРУН</div>
+						<div id="time">Без учета струн</div>
+						<div id="price">300р</div>
+						<div id="zap"><a href="login.html">Записаться</a></div>
+					</div>
+
+					<div class="card">
+
+						<div id="abon">Гитарная базовая</div>
+						<div id="title"> НАСТРОЙКА</div>
+						<div id="time">Анкер и высота струн</div>
+						<div id="price">500р</div>
+						<div id="zap"><a href="login.html">Записаться</a></div>
+
+					</div>
+					<div class="card">
+						<div id="abon">Настойка и струны</div>
+						<div id="title">КОМБО</div>
+						<div id="time">Выгоднее на 150р</div>
+						<div id="price">750р</div>
+						<div id="zap"><a href="login.html">Записаться</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="concertsStyle.css">
+	<title>HitbeatGuitarConcerts</title>
+	<link rel="apple-touch-icon" href="image/gut.png">
+	<link rel="shortcut icon" href="image/gut.png" type="image/x-icon">
+</head>
+
+<body>
+	<header>
+
+		<nav class="site-nav js-site-nav" role="navigation" aria-label="navigation">
+
+			<div class="site-nav__curtain js-nav-curtain"></div>
+
+			<div class="wrapper wrapper--nav-area">
+
+				<button class="menu-button js-menu-button" aria-expanded="false" aria-controls="menu" aria-label="Menu button">
+					<span class="menu-button__lines">
+						<span class="menu-button__line"></span>
+						<span class="menu-button__line"></span>
+						<span class="menu-button__line"></span>
+					</span>
+
+				</button>
+
+
+				<ul class="site-nav__menu u-list-reset js-menu" id="menu">
+					<li><a class="site-nav__link" href="aboutDenis.html">О ДЕНИСЕ</a></li>
+					<li><a class="site-nav__link" href="concerts.html">КОНЦЕРТЫ </a></li>
+					<li><a class="site-nav__link" href="price.html">ЦЕНЫ</a></li>
+					<li><a class="site-nav__link" href="contact.html">КОНТАКТЫ</a></li>
+				</ul>
+				<div class="centerlogo">
+					<a href="home.html">
+						<img src="image/LogoaLL.png" alt="hitbeat"></a>
+				</div>
+			</div>
+		</nav>
+		<script>
+			const siteNav = document.querySelector('.js-site-nav')
+			const menu = document.querySelector('.js-menu')
+			const menuButton = document.querySelector('.js-menu-button')
+			const navCurtain = document.querySelector('.js-nav-curtain')
+
+			function mobileNavToggler() {
+				const state = {
+					isOpen: false,
+				}
+
+				function showMenu() {
+					siteNav.classList.add('site-nav--is-open')
+					menu.classList.remove('fade-out')
+					menu.classList.add('fade-in')
+				}
+
+				function hideMenu() {
+					siteNav.classList.remove('site-nav--is-open')
+					menu.classList.remove('fade-in')
+					menu.classList.add('fade-out')
+				}
+
+				function curtainUp() {
+					navCurtain.classList.remove('curtain-down')
+					navCurtain.classList.add('curtain-up')
+				}
+
+				function curtainDown() {
+					navCurtain.classList.remove('curtain-up')
+					navCurtain.classList.add('curtain-down')
+				}
+
+				function unfocusButton(event) {
+					menuButton.classList.remove('menu-button__lines--open')
+					menuButton.setAttribute('aria-expanded', 'false')
+				}
+
+				function focusButton(event) {
+					menuButton.classList.add('menu-button__lines--open')
+					menuButton.setAttribute('aria-expanded', 'true')
+				}
+
+				function handleMenuButtonClick() {
+					if (state.isOpen) {
+						hideMenu()
+						unfocusButton()
+						curtainDown()
+						state.isOpen = false
+						return
+					}
+
+					focusButton()
+					curtainUp()
+					state.isOpen = true
+				}
+
+				function handleCurtainAnimationEnd() {
+					if (state.isOpen) {
+						showMenu()
+					}
+				}
+
+				return {
+					handleEvent(event) {
+						if (event.type === 'click') {
+							handleMenuButtonClick()
+							return
+						}
+
+						if (event.type === 'animationend') {
+							handleCurtainAnimationEnd()
+						}
+					},
+
+					init() {
+						menuButton.addEventListener('click', this)
+						navCurtain.addEventListener('animationend', this)
+					},
+				}
+			}
+
+			mobileNavToggler().init()
+
+		</script>
+	</header>
+	<main>
+		<h2>КОНЦЕРТЫ</h2>
+		<div class='gallery'>
+
+			<img class='hero' src='image/kon1.jpg'>
+			<img src='image/kon2.jpg'>
+			<img src='image/kon21.jpg'>
+			<img src='image/kon3.jpg'>
+			<img src='image/kon20.jpg'>
+			<img src='image/kon4.jpg'>
+			<img src='image/kon5.jpg'>
+			<img src='image/kon6.jpg'>
+			<img src='image/kon7.jpg'>
+			<img src='image/kon8.jpg'>
+			<img src='image/kon9.jpg'>
+			<img src='image/kon10.jpg'>
+			<img src='image/kon11.jpg'>
+			<img src='image/kon12.jpg'>
+			<img src='image/kon13.jpg'>
+			<img src='image/kon14.jpg'>
+			<img src='image/kon15.jpg'>
+			<img src='image/kon16.jpg'>
+			<img src='image/kon17.jpg'>
+			<img src='image/kon18.jpg'>
+			<img src='image/kon19.jpg'>
+		</div>
+		<script>
+			const hero = document.querySelector('.hero');
+
+			function activate(e) {
+				if (e.target.matches('.hero') || !e.target.matches('img')) return;
+				[hero.src, e.target.src] = [e.target.src, hero.src];
+			}
+
+			window.addEventListener('click', activate, false);
+
+		</script>
+	</main>
+</body>
+
+</html>

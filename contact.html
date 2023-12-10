@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="contactStyle.css" s>
+	<title>HitbeatGuitarContact</title>
+	<link rel="apple-touch-icon" href="image/gut.png">
+	<link rel="shortcut icon" href="image/gut.png" type="image/x-icon">
+</head>
+
+<body>
+	<header>
+
+		<nav class="site-nav js-site-nav" role="navigation" aria-label="navigation">
+
+			<div class="site-nav__curtain js-nav-curtain"></div>
+
+			<div class="wrapper wrapper--nav-area">
+
+				<button class="menu-button js-menu-button" aria-expanded="false" aria-controls="menu" aria-label="Menu button">
+					<span class="menu-button__lines">
+						<span class="menu-button__line"></span>
+						<span class="menu-button__line"></span>
+						<span class="menu-button__line"></span>
+					</span>
+
+				</button>
+
+				<ul class="site-nav__menu u-list-reset js-menu" id="menu">
+					<li><a class="site-nav__link" href="aboutDenis.html">О ДЕНИСЕ</a></li>
+					<li><a class="site-nav__link" href="concerts.html">КОНЦЕРТЫ </a></li>
+					<li><a class="site-nav__link" href="price.html">ЦЕНЫ</a></li>
+					<li><a class="site-nav__link" href="contact.html">КОНТАКТЫ</a></li>
+				</ul>
+				<div class="centerlogo">
+					<a href="home.html">
+						<img src="image/LogoaLL.png" alt="hitbeat"></a>
+				</div>
+			</div>
+		</nav>
+		<script>
+			const siteNav = document.querySelector('.js-site-nav')
+			const menu = document.querySelector('.js-menu')
+			const menuButton = document.querySelector('.js-menu-button')
+			const navCurtain = document.querySelector('.js-nav-curtain')
+
+			function mobileNavToggler() {
+				const state = {
+					isOpen: false,
+				}
+
+				function showMenu() {
+					siteNav.classList.add('site-nav--is-open')
+					menu.classList.remove('fade-out')
+					menu.classList.add('fade-in')
+				}
+
+				function hideMenu() {
+					siteNav.classList.remove('site-nav--is-open')
+					menu.classList.remove('fade-in')
+					menu.classList.add('fade-out')
+				}
+
+				function curtainUp() {
+					navCurtain.classList.remove('curtain-down')
+					navCurtain.classList.add('curtain-up')
+				}
+
+				function curtainDown() {
+					navCurtain.classList.remove('curtain-up')
+					navCurtain.classList.add('curtain-down')
+				}
+
+				function unfocusButton(event) {
+					menuButton.classList.remove('menu-button__lines--open')
+					menuButton.setAttribute('aria-expanded', 'false')
+				}
+
+				function focusButton(event) {
+					menuButton.classList.add('menu-button__lines--open')
+					menuButton.setAttribute('aria-expanded', 'true')
+				}
+
+				function handleMenuButtonClick() {
+					if (state.isOpen) {
+						hideMenu()
+						unfocusButton()
+						curtainDown()
+						state.isOpen = false
+						return
+					}
+
+					focusButton()
+					curtainUp()
+					state.isOpen = true
+				}
+
+				function handleCurtainAnimationEnd() {
+					if (state.isOpen) {
+						showMenu()
+					}
+				}
+
+				return {
+					handleEvent(event) {
+						if (event.type === 'click') {
+							handleMenuButtonClick()
+							return
+						}
+
+						if (event.type === 'animationend') {
+							handleCurtainAnimationEnd()
+						}
+					},
+
+					init() {
+						menuButton.addEventListener('click', this)
+						navCurtain.addEventListener('animationend', this)
+					},
+				}
+			}
+
+			mobileNavToggler().init()
+
+		</script>
+	</header>
+	<main>
+		<div class="Dobr" id="Dobr">
+			<h2>КАК ДОБРТЬСЯ?</h2>
+		</div>
+		<div id="map-container">
+			<a href="https://yandex.ru/maps/org/khitbit_shkola_barabanov/163148474897/?utm_medium=mapframe&utm_source=maps">Хитбит школа барабанов</a>
+			<a href="https://yandex.ru/maps/10740/mytischi/category/courses_and_master_classes/184106220/?utm_medium=mapframe&utm_source=maps">Курсы и мастер-классы в Мытищах</a>
+			<a href="https://yandex.ru/maps/10740/mytischi/category/further_education/184106162/?utm_medium=mapframe&utm_source=maps">Дополнительное образование в Мытищах</a>
+			<iframe src="https://yandex.ru/map-widget/v1/?display-text=%D0%A5%D0%98%D0%A2%D0%91%D0%98%D0%A2%2C%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20%D0%B3%D0%B8%D1%82%D0%B0%D1%80%D0%B5%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D0%9C%D0%B0%D1%80%D0%BA%D1%81%D0%B0%205&ll=37.766562%2C55.916186&mode=search&oid=163148474897&ol=biz&sctx=ZAAAAAgBEAAaKAoSCZ5eKcsQz0JAEdOgaB7A4EtAEhIJ4nMn2H8d9z8RFRkdkIR93T8iBgABAgMEBSgKOABA9FNIAWoCcnWdAc3MTD2gAQCoAQC9AePZPb7CAQaR1KDj3wTqAQDyAQD4AQCCAlXQpdCY0KLQkdCY0KIsINC%2B0LHRg9GH0LXQvdC40LUg0L3QsCDQs9C40YLQsNGA0LUg0YPQu9C40YbQsCDQmtCw0YDQu9CwINCc0LDRgNC60YHQsCA1igIAkgIFMjA3MjiaAgxkZXNrdG9wLW1hcHM%3D&sll=37.766562%2C55.916186&sspn=0.031924%2C0.010140&text=%D0%A5%D0%98%D0%A2%D0%91%D0%98%D0%A2%2C%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B0%20%D0%B3%D0%B8%D1%82%D0%B0%D1%80%D0%B5%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D0%9C%D0%B0%D1%80%D0%BA%D1%81%D0%B0%205&z=15.5" frameborder="1" allowfullscreen="true"></iframe>
+		</div>
+		<div id="Strit">
+			<div class="Strit1">Улица Карла Маркса, 5</div>
+			<div>Мытищи, Московская область</div>
+		</div>
+		<div class="Dobr" id="con1">
+			<h2>НАШИ КОНТАКТЫ</h2>
+		</div>
+		<div class="allAboutUs">
+			<div class="aboutus">
+				<div class="AboutSoc">
+					<div class="iconka">
+						<img src="image/TEL.png" alt="Телефон">
+					</div>
+					<div class="podpis">
+						<a href="tel:+79779491635">+7-977-949-16-35</a>
+
+					</div>
+				</div>
+				<div class="AboutSoc">
+					<div class="iconka">
+						<img src="image/vK.png" alt="ВК">
+					</div>
+					<div class="podpis">
+						<a href="https://vk.com/hitbeatguitars">Группа в ВК</a>
+					</div>
+
+				</div>
+				<div class="AboutSoc">
+					<div class="iconka">
+						<img src="image/yOUTUBE.png" alt="hitbeat">
+					</div>
+					<div class="podpis">
+						<a href="https://www.youtube.com/@user-jl2zx7py9w">TouTube канал</a>
+					</div>
+				</div>
+			</div>
+			<div class="work">Режим работы: ежедневно c 10:00 до 22:00</div>
+		</div>
+	</main>
+</body>
+
+</html>
